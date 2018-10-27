@@ -37,7 +37,7 @@ $args=[
     'supports'=>[
         'title','editor','excerpt','thumbnail','revisions'
     ],
-    'taxonomies'=>['category','post_tag'],
+    //'taxonomies'=>['category','post_tag'],
     'menu_position'=>2,
     'exclude_from_search'=>FALSE
 ];
@@ -47,6 +47,43 @@ register_post_type('films', $args);
 }
 
 add_action('init', 'codeline_films_post_type');
-###### Add texanomy for Post Film ######
+
+###### Add following taxonimies to films: Genre, Country, Year and Actors ######
+
+function codeline_custom_taxonomies()
+{
+//Task
+$taxonomiesBucket=['Genre','Country','Year','Actor'];
+//Create taxonomies
+foreach($taxonomiesBucket as $taxonomy)
+{
+$labels=[
+    'name'=>$taxonomy.'s',
+    'singular_name'=>$taxonomy,
+    'search_items'=>"Search $taxonomy",
+    'all_items'=>"All $taxonomy",
+    'parent_item'=>"Parent $taxonomy",
+    'parent_item_colon'=>"Parent $taxonomy:",
+    'edit_item'=>"Edit $taxonomy",
+    'update_item'=>"Update $taxonomy",
+    'add_new_item'=>"Add New $taxonomy",
+    'new_item_name'=>"New $taxonomy Name",
+    'menu_name'=>"$taxonomy"
+];
+$args=[
+    'hierarchical'=>TRUE,
+    'labels'=>$labels,
+    'show_ui'=>TRUE,
+    'show_admin_column'=>TRUE,
+    'query_var'=>TRUE,
+    'rewrite'=>['slug'=> strtolower($taxonomy)]   
+];
+
+register_taxonomy(strtolower($taxonomy),['films'], $args);
+
+}
+}
+
+add_action('init','codeline_custom_taxonomies');
 
 ?>
