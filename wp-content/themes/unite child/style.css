@@ -2,3 +2,32 @@
 Theme Name: unite child
 Template: unite
 */
+
+
+hr.films-section-divider {
+    height: 1px;
+    background: #EEE;
+    position: relative;
+    overflow: visible;
+    z-index: 100;
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+hr.films-section-divider:after {
+    z-index: 10000;
+    content: "\f004";
+    font-family: FontAwesome;
+    color: #54397E;
+    position: absolute;
+    top: -23px;
+    left: 50%;
+    right: 50%;
+    width: 40px;
+    height: 30px;
+    margin-left: -20px;
+    font-size: 30px;
+}
+hr.section-divider {
+    display:none;
+}

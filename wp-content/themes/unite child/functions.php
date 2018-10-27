@@ -175,4 +175,28 @@ function codeline_save_films_meta($post_id,$post) {
 	endforeach;
 }
 add_action('save_post','codeline_save_films_meta', 1, 2 );
+
+
+###### Last 5 Films Short Code ######
+function codeline_last_five_film($atts){
+ $q = new WP_Query(
+   array( 'orderby' => 'date', 'posts_per_page' => '5','post_type' => 'films')
+ );
+
+$list = '<ol class="recent-posts">';
+
+while($q->have_posts()) : $q->the_post();
+
+ //$list .= '<li>' . get_the_date() . '<a href="' . get_permalink() . '">' . get_the_title() . '</a>' . '<br />' . get_the_excerpt() . '</li>';
+$list .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+
+endwhile;
+
+wp_reset_query();
+
+return $list . '</ol>';
+
+}
+
+add_shortcode('recent-films', 'codeline_last_five_film');
 ?>
