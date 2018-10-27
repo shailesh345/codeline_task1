@@ -29,13 +29,13 @@ $args=[
     'labels'=>$labels,
     'public'=>TRUE,
     'has_archive'=>TRUE,
-    'publicly_queryabe'=>TRUE,
+    'publicly_queryable'=>TRUE,
     'query_var'=>TRUE,
     'rewrite'=>TRUE,
     'capability_type'=>'post',
     'hierarchical'=>FALSE,
     'supports'=>[
-        'tite','editor','excerpt','thumbnail','revisions'
+        'title','editor','excerpt','thumbnail','revisions'
     ],
     'taxonomies'=>['category','post_tag'],
     'menu_position'=>2,
